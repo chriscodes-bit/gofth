@@ -28,7 +28,6 @@ type model struct {
 	output          string
 	width           int
 	height          int
-	err             error
 	promptMode      string
 	promptInput     string
 	currentFile     string

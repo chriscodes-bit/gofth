@@ -24,7 +24,6 @@ func initialModel() model {
 		output:         "",
 		width:          80,
 		height:         24,
-		err:            nil,
 		showFilePicker: false,
 	}
 }
@@ -44,9 +43,6 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 	case tea.KeyMsg:
 		return m.handleKeyPress(msg)
-	case errMsg:
-		m.err = msg
-		return m, nil
 
 	default:
 		// let filepicker handle other message types
@@ -365,5 +361,3 @@ func (m model) handleToggleTable() (tea.Model, tea.Cmd) {
 	}
 	return m, nil
 }
-
-type errMsg error
