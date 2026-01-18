@@ -29,8 +29,7 @@ func initialModel() model {
 }
 
 func (m model) Init() tea.Cmd {
-	tea.SetWindowTitle("GoFth | Forth Interpreter")
-	return tea.Batch(textarea.Blink, tea.ClearScreen)
+	return tea.Batch(textarea.Blink, tea.ClearScreen, tea.SetWindowTitle("GoFth | Forth Interpreter"))
 }
 
 func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
