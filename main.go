@@ -12,7 +12,8 @@ import (
 func main() {
 	p := tea.NewProgram(
 		initialModel(),
-		tea.WithAltScreen())
+		tea.WithAltScreen(),
+	)
 	if _, err := p.Run(); err != nil {
 		log.Fatal(err)
 	}
