@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"strings"
 )
 
@@ -110,6 +111,79 @@ var Builtins = map[string]Word{
 		Category:    "Math",
 		Execute: func() any {
 			binaryOp(func(a, b float64) float64 { return a / b })
+			return nil
+		},
+	},
+	"pi": {
+		Name:        "Pi",
+		Description: "Represents Pi as 3.141592653589793",
+		Category:    "Math",
+		Execute: func() any {
+			push(math.Pi)
+			return nil
+		},
+	},
+	"sqrt": {
+		Name:        "Square Root",
+		Description: "Calculates the square root of the top most element on the stack",
+		Category:    "Math",
+		Execute: func() any {
+			a := pop()
+			af, aok := a.(float64)
+			if !aok {
+				output.Write("Error: sqrt didn't receive a number")
+				return nil
+			}
+			push(math.Sqrt(af))
+			return nil
+		},
+	},
+	"min": {
+		Name:        "Minimum",
+		Description: "Returns the minimum of the two top most stack values",
+		Category:    "Math",
+		Execute: func() any {
+			a := pop()
+			b := pop()
+			af, aok := a.(float64)
+			bf, bok := b.(float64)
+			if !aok || !bok {
+				output.Write("Error: Not enough valid numbers")
+				return nil
+			}
+			push(math.Min(af, bf))
+			return nil
+		},
+	},
+	"max": {
+		Name:        "Maximum",
+		Description: "Returns the maximum of the two top most stack values",
+		Category:    "Math",
+		Execute: func() any {
+			a := pop()
+			b := pop()
+			af, aok := a.(float64)
+			bf, bok := b.(float64)
+			if !aok || !bok {
+				output.Write("Error: Not enough valid numbers")
+				return nil
+			}
+			push(math.Max(af, bf))
+			return nil
+		},
+	},
+	"abs": {
+		Name:        "Absolute",
+		Description: "Returns the absolute value of the top most stack value",
+		Category:    "Math",
+		Execute: func() any {
+			a := pop()
+			af, aok := a.(float64)
+			if !aok {
+				output.Write("Error: Not enough valid numbers")
+				return nil
+			}
+			push(math.Abs(af))
 			return nil
 		},
 	},

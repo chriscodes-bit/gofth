@@ -5,4 +5,4 @@ dup * ;
 dup square * ;
 
 5 square .
-5 cube .
+10 cube .
